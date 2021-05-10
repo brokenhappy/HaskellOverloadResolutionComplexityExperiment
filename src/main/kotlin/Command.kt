@@ -1,0 +1,1 @@
+inline class Command(private val command: String)
