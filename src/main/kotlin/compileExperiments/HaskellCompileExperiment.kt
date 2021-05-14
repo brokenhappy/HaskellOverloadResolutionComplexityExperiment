@@ -1,7 +1,13 @@
+package compileExperiments
+
+import Command
+import Environment
 import org.intellij.lang.annotations.Language
 import java.nio.file.Path
 
 class HaskellCompileExperiment(private val environment: Environment) : CompileExperiment {
+    override val description get() = "Haskell"
+
     @Language("Haskell")
     override fun generateCode(n: Int) = """
         {-# LANGUAGE FlexibleInstances #-}

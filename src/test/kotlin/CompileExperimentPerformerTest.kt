@@ -1,3 +1,5 @@
+import compileExperiments.CompileExperiment
+import org.intellij.lang.annotations.Language
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Tag
 import org.junit.jupiter.api.Test
@@ -12,8 +14,9 @@ class CompileExperimentPerformerTest {
             225.0,
             CompileExperimentPerformer()
                 .measureExecutionTimeMillisFor(object : CompileExperiment {
+                    @Language("bash")
                     override fun generateCode(n: Int) = "sleep 0.2"
-
+                    override val description: String get() = "Test experiment"
                     override val basePath = File(
                         CompileExperimentPerformerTest::class.java.getResource("testBash.sh")?.path
                             ?: throw IllegalStateException("Resources folder should contain testBash.sh file in root")
