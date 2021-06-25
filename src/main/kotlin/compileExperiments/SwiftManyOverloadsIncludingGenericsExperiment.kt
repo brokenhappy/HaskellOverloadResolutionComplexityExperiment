@@ -10,8 +10,8 @@ class SwiftManyOverloadsIncludingGenericsExperiment(environment: Environment) : 
     override fun generateCode(n: Int) = """
         struct A {}
         struct B {}
-        func +(a: A, _: A) -> A {a}
-        func +(b: B, _: B) -> B {b}
+        func +(lhs: A, rhs: A) -> A {a}
+        func +(lhs: B, rhs: B) -> B {b}
 
         func ab() -> A {A()}
         func ab() -> B {B()}
