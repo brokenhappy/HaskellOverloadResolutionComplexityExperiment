@@ -14,7 +14,7 @@ class Main {
         private val compileExperimentPerformer = CompileExperimentPerformer()
 
         private fun measure(attempts: Iterable<Int>, experiment: CompileExperiment) =
-            (0..10).asSequence()
+            (0..5)
                 .also { println(experiment.description) }
                 .map {
                     attempts.map { i ->
@@ -27,13 +27,12 @@ class Main {
                 .averages
 
         @JvmStatic
-        fun main(args: Array<String>) {
-            sequenceOf(
-                { measure(0..1000 step 50, SwiftTwoOverloadExperiment(PrivateEnvironment)) },
-                { measure(0..1000 step 50, SwiftOneImplementationExperiment(PrivateEnvironment)) },
-                { measure(0..11, SwiftManyOverloadsIncludingGenericsExperiment(PrivateEnvironment)) },
-                { measure(0..1000 step 50, HaskellCompileExperiment(PrivateEnvironment)) },
-            ).forEach { println(it()) }
-        }
+        fun main(args: Array<String>) = sequence {
+            yield(measure(0..1000 step 50, SwiftTwoOverloadExperiment(PrivateEnvironment)))
+            yield(measure(0..1000 step 50, SwiftOneImplementationExperiment(PrivateEnvironment)))
+            yield(measure(0..11   step 1 , SwiftManyOverloadsIncludingGenericsExperiment(PrivateEnvironment)))
+            yield(measure(0..1000 step 50, HaskellCompileExperiment(PrivateEnvironment)))
+            yield(measure(0..17   step 1 , SwiftNonGenericClosureCompileExperiment(PrivateEnvironment)))
+        }.forEach { println(it) }
     }
 }
