@@ -1,7 +1,7 @@
-import java.io.File
+import java.nio.file.Path
 
 interface Environment {
-    val baseProjectFolder: File
+    val baseProjectFolder: Path
     val haskellProjectName: String
     val swiftProjectName: String
 }
