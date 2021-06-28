@@ -33,7 +33,6 @@ class Main {
             yield(measure(0..11   step 1 , SwiftManyOverloadsIncludingGenericsExperiment(PrivateEnvironment)))
             yield(measure(0..1000 step 50, HaskellCompileExperiment(PrivateEnvironment)))
             yield(measure(0..17   step 1 , SwiftGenericClosureCompileExperiment(PrivateEnvironment)))
-            yield(measure(0..17   step 1 , SwiftNonGenericClosureCompileExperiment(PrivateEnvironment)))
         }.forEach { println(it) }
     }
 }
